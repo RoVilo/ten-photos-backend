@@ -1,5 +1,8 @@
 const express = require('express')
+var multer  = require('multer')
+var upload = multer({ dest: 'public/uploads/' })
 const app = express()
+
 
 app.get('/', function (req, res) {
   res.send('Tu sa bude tvorit mega projeeekt 222')
@@ -19,4 +22,8 @@ app.get('/users', function(req, res) {
 app.get('/users/:userid', function(req, res) {
     console.log('Requested users');
     res.send('Deatail of user ' + req.params.userid);
+})
+
+app.post('/', upload.any(), function (req, res, next) {
+  res.send(req.files)
 })
