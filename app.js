@@ -5,6 +5,7 @@ const app = express()
 var path = require('path');
 var serveIndex = require('serve-index')
 
+app.use(express.static('public'))
 
 
 // app.get('/', function (req, res) {
