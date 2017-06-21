@@ -4,8 +4,18 @@ var multer  = require('multer')
 const app = express()
 var path = require('path');
 var serveIndex = require('serve-index')
+var find = require('list-files');
 
-app.use(express.static('public'))
+
+/// array of files in deirectory
+find(function(result) {
+    console.log(result);
+    //=> './dirname/a.js' 
+    //=> './dirname/b.js' 
+}, {
+    dir: 'public/uploads/',
+    name: 'png'
+});
 
 
 // app.get('/', function (req, res) {
@@ -37,6 +47,9 @@ app.post('/', upload.single('myimage'), function (req, res, next) { // myimage =
 
 // Serve URLs like /ftp/thing as public/ftp/thing
 app.use('/uploads', serveIndex('public/uploads', {'icons': true}))
+
+// public folder is public 
+app.use(express.static('public'))
 
 // var port = process.env.port || 3000;
 
