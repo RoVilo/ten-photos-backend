@@ -36,7 +36,7 @@ app.post('/', upload.single('myimage'), function (req, res, next) { // myimage =
 })
 
 // Serve URLs like /ftp/thing as public/ftp/thing
-app.use('/files', serveIndex('public/uploads', {'icons': true}))
+app.use('/uploads', serveIndex('public/uploads', {'icons': true}))
 
 // var port = process.env.port || 3000;
 
