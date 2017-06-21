@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.post('/', upload.any(), function (req, res, next) {
+app.post('/', upload.single('avatar'), function (req, res, next) {
   res.send(req.files)
 })
 
