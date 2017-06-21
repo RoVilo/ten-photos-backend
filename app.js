@@ -1,6 +1,6 @@
 const express = require('express')
 var multer  = require('multer')
-var upload = multer({ dest: 'public/uploads/' })
+// var upload = multer({ dest: 'public/uploads/' })
 const app = express()
 var path = require('path');
 var serveIndex = require('serve-index')
@@ -15,7 +15,22 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.post('/', upload.single('avatar'), function (req, res, next) {
+/*
+// Multer - post image
+*/
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')                     // where to save file
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname + '-' + Date.now())  // saved file name
+  }
+})
+
+var upload = multer({ storage: storage })
+
+app.post('/', upload.single('myimage'), function (req, res, next) {
   res.send(req.files)
 })
 
