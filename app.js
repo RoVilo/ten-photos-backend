@@ -11,6 +11,7 @@ var find = require('list-files');
 app.get('/photos', function(req, res) {
     find(function(result) {
         console.log(result);
+        res.send(result)
         //=> './dirname/a.js' 
         //=> './dirname/b.js' 
     }, {
