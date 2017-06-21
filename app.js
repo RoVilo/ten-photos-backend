@@ -8,14 +8,19 @@ var find = require('list-files');
 
 
 /// array of files in deirectory
-find(function(result) {
-    console.log(result);
-    //=> './dirname/a.js' 
-    //=> './dirname/b.js' 
-}, {
-    dir: 'public/uploads/',
-    name: 'png'
+app.get('/photos', function(req, res) {
+    find(function(result) {
+        console.log(result);
+        //=> './dirname/a.js' 
+        //=> './dirname/b.js' 
+    }, {
+        dir: 'public/uploads/',
+        name: 'png'
+    });
 });
+
+
+
 
 
 // app.get('/', function (req, res) {
