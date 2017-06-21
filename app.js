@@ -24,13 +24,13 @@ var storage = multer.diskStorage({
         cb(null, 'public/uploads/')                     // where to save file
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now())  // saved file name
+        cb(null, Date.now() + '-' + file.originalname)  // saved file name
   }
 })
 
 var upload = multer({ storage: storage })
 
-app.post('/', upload.single('myimage'), function (req, res, next) {
+app.post('/', upload.single('myimage'), function (req, res, next) { // myimage = input field name
   res.send(req.files)
 })
 
